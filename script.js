@@ -181,3 +181,10 @@ restartButton.addEventListener('click',function(){
 });
 
 
+// Reload page when window width changes
+let windowWidth = window.innerWidth;
+window.addEventListener('resize', function(){
+    if(window.innerWidth !== windowWidth){
+        location.reload();
+    }
+});
