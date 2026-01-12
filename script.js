@@ -158,7 +158,7 @@ let x = function(){
     if(maxScoreValue>=300){
         snakeColorClass = 'above-300';
     }
-    else if(maxScoreValue>200){
+    else if(maxScoreValue>=200){
         snakeColorClass = 'above-200';
     }
     else if(maxScoreValue>=100){
