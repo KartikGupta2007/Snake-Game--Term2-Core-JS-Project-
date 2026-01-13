@@ -91,18 +91,24 @@ function createFood(){
 
 //moving the snake by arrowkeys , hence finding directions by keydown feature!!!
 let direction = 'right';
+let directionChanged = false; // Only allow one direction change per tick
 document.addEventListener('keydown',function(event){
+    if(directionChanged) return; // Ignore inputs after first valid change this tick
     if(event.key === 'ArrowRight' && direction !== 'left'){
         direction = 'right';
+        directionChanged = true;
     }
     else if(event.key === 'ArrowLeft' && direction !== 'right'){
         direction = 'left';
+        directionChanged = true;
     }
     else if(event.key === 'ArrowUp' && direction !== 'down'){
         direction = 'up';
+        directionChanged = true;
     }
     else if(event.key === 'ArrowDown' && direction !== 'up'){
         direction = 'down';
+        directionChanged = true;
     }
 });
 
@@ -154,6 +160,7 @@ let x = function(){
         snakeLocation.pop();
         snakeLocation.unshift(head);
     }
+    directionChanged = false; // Allow new input for next tick
     let snakeColorClass = '';
     if(maxScoreValue>=300){
         snakeColorClass = 'above-300';
@@ -229,6 +236,7 @@ restartButton.addEventListener('click',function(){
     modal.style.display = 'none';
     snakeLocation = [{x: 0, y: 0}];
     direction = 'right';
+    directionChanged = false;
     drawSnake();
     createFood();
     timer.innerText = `00:00`;
